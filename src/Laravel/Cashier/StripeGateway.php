@@ -87,7 +87,7 @@ class StripeGateway {
 
 			$freshCustomer = true;
 		}
-		elseif ( ! is_null($token))
+		elseif ( ! is_null($token) && strpos($token, 'tok') !== false)
 		{
 			$this->updateCard($token);
 		}
@@ -486,6 +486,7 @@ class StripeGateway {
 
 		return $this->getStripeCustomer($customer->id);
 	}
+
 
 	/**
 	 * Get the Stripe customer for entity.
