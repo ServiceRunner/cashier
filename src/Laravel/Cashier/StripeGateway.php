@@ -83,7 +83,7 @@ class StripeGateway {
 
 		if ( ! $customer)
 		{
-			$customer = $this->createStripeCustomer($token, $properties);
+			$customer = (!empty($this->billable->stripe_user)) ? $this->getStripeCustomer($this->billable->stripe_user) : $this->createStripeCustomer($token, $properties);
 
 			$freshCustomer = true;
 		}
