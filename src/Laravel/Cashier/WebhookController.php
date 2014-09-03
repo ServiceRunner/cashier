@@ -25,7 +25,7 @@ class WebhookController extends Controller {
 		}
 		else
 		{
-			throw new NotFoundHttpException;
+			return $this->missingMethod();
 		}
 	}
 
@@ -77,6 +77,17 @@ class WebhookController extends Controller {
 	protected function getJsonPayload()
 	{
 		return (array) json_decode(Request::getContent(), true);
+	}
+
+	/**
+	 * Handle calls to missing methods on the controller.
+	 *
+	 * @param  array   $parameters
+	 * @return mixed
+	 */
+	public function missingMethod($parameters = array())
+	{
+		return new Response;
 	}
 
 }
